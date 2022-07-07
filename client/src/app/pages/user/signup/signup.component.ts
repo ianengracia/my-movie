@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
-    this.titleService.setTitle('Sign Up | MyMovies');
+    this.titleService.setTitle('Sign Up | MyMoviesSite');
 
     this.initError();
   }

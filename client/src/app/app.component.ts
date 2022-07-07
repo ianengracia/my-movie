@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
 
@@ -8,7 +9,13 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('MyMoviesSite');
+  }
 
   ngOnInit(): void {
     this.userService.loadUser().subscribe((response) => {

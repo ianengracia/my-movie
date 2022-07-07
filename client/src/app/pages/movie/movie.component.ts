@@ -8,6 +8,7 @@ import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { Rating } from 'src/app/interfaces/Rating';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie',
@@ -38,7 +39,8 @@ export class MovieComponent implements OnInit {
     private movieService: MovieService,
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private titleService: Title
   ) {
     this.isUserLoggedIn = userService.checkUserLoggedIn();
 
@@ -75,10 +77,13 @@ export class MovieComponent implements OnInit {
         this.movie = response.data;
         this.checkIfUserUploaded();
         this.setUserRating();
+        this.titleService.setTitle(`${this.movie.title} | MyMoviesSite`);
+
         return;
       }
 
       this.isNotFound = true;
+      this.titleService.setTitle('Not Found | MyMoviesSite');
     });
   }
 

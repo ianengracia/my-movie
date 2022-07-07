@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Movie } from 'src/app/interfaces/Movie';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -10,7 +11,9 @@ import { MovieService } from 'src/app/services/movie.service';
 export class AllMoviesComponent implements OnInit {
   movies: Movie[] = [];
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private titleService: Title) {
+    this.titleService.setTitle('MyMoviesSite');
+  }
 
   ngOnInit(): void {
     this.movieService.findAll().subscribe((response) => {

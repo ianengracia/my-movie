@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Movie } from 'src/app/interfaces/Movie';
 import { MovieService } from 'src/app/services/movie.service';
@@ -15,7 +16,8 @@ export class SearchMoviesComponent implements OnInit {
   constructor(
     private movieService: MovieService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private titleService: Title
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +28,8 @@ export class SearchMoviesComponent implements OnInit {
         this.router.navigateByUrl('/movies');
       } else {
         this.searchMovies();
+
+        this.titleService.setTitle(`Search '${this.searchFor}' | MyMoviesSite`);
       }
     });
   }

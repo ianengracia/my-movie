@@ -9,6 +9,7 @@ import { COUNTRIES } from '../../config/countries';
 
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Movie } from 'src/app/interfaces/Movie';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-form',
@@ -45,8 +46,11 @@ export class MovieFormComponent implements OnInit {
     private userService: UserService,
     private movieService: MovieService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('New Movie | MyMoviesSite');
+
     this.userSubscription = this.userService
       .onLoadUser()
       .subscribe((value) => (this.user = value));
@@ -72,6 +76,9 @@ export class MovieFormComponent implements OnInit {
         this.movie = response.data;
         this.checkIfMoveOwnedByUser();
         this.setMovieData();
+
+        this.titleService.setTitle(`${this.movie.title} | MyMoviesSite`);
+
         return;
       }
 

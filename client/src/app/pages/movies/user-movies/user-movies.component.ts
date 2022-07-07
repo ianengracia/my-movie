@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Movie } from 'src/app/interfaces/Movie';
 import { MovieService } from 'src/app/services/movie.service';
@@ -15,8 +16,11 @@ export class UserMoviesComponent implements OnInit {
   constructor(
     private movieService: MovieService,
     private userService: UserService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle('My Movies | MyMoviesSite');
+  }
 
   ngOnInit(): void {
     this.movieService.findAllByUser().subscribe((response) => {
