@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     };
 
     this.userService.login(credentials).subscribe((response) => {
-      if (response && response.status && response.status === 200) {
+      if (response?.status === 200) {
         this.userService.setToken(response.data.token);
         this.userService.loadedUser(response.data.user);
         this.userService.loginUser();

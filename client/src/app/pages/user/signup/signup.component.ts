@@ -64,7 +64,7 @@ export class SignupComponent implements OnInit {
 
     this.userService.register(newUser).subscribe((response) => {
       //show error if has any
-      if (response && response.status && response.status !== 201) {
+      if (response?.status !== 201) {
         this.errorMsg = response.message || 'Something went wrong!';
       } else {
         this.router.navigateByUrl('/login');

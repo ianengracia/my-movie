@@ -14,12 +14,7 @@ export class AllMoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieService.findAll().subscribe((response) => {
-      if (
-        response &&
-        response.status &&
-        response.status === 200 &&
-        response.data
-      ) {
+      if (response?.status === 200 && response.data) {
         this.movies = response.data;
       }
     });

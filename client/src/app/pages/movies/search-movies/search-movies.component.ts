@@ -32,12 +32,7 @@ export class SearchMoviesComponent implements OnInit {
 
   searchMovies(): void {
     this.movieService.searchMovies(this.searchFor).subscribe((response) => {
-      if (
-        response &&
-        response.status &&
-        response.status === 200 &&
-        response.data
-      ) {
+      if (response?.status === 200 && response.data) {
         this.movies = response.data;
         return;
       }

@@ -68,12 +68,7 @@ export class MovieFormComponent implements OnInit {
     }
 
     this.movieService.findById(this.movieId).subscribe((response) => {
-      if (
-        response &&
-        response.status &&
-        response.status === 200 &&
-        response.data
-      ) {
+      if (response?.status === 200 && response.data) {
         this.movie = response.data;
         this.checkIfMoveOwnedByUser();
         this.setMovieData();
@@ -132,12 +127,13 @@ export class MovieFormComponent implements OnInit {
     const toDo = isUpdateMovie ? 'UPDATE' : 'NEW';
 
     this.movieService.saveMovie(newMovie, toDo).subscribe((response) => {
-      if (
-        response &&
-        response.status &&
-        response.status === 200 &&
-        response.data
-      ) {
+      if (response?.status === 403) {
+        this.userService.deleteToken();
+        this.router.navigateByUrl('/login');
+        return;
+      }
+
+      if (response?.status === 200 && response.data) {
         const movie = response.data;
         this.router.navigateByUrl(`/movies/details?id=${movie.id}`);
         return;

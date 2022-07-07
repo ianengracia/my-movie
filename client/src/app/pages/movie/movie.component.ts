@@ -65,12 +65,13 @@ export class MovieComponent implements OnInit {
     this.movieService.findById(this.movieId).subscribe((response) => {
       this.isLoading = false;
 
-      if (
-        response &&
-        response.status &&
-        response.status === 200 &&
-        response.data
-      ) {
+      if (response?.status === 403) {
+        this.userService.deleteToken();
+        this.router.navigateByUrl('/login');
+        return;
+      }
+
+      if (response?.status === 200 && response.data) {
         this.movie = response.data;
         this.checkIfUserUploaded();
         this.setUserRating();
@@ -145,12 +146,13 @@ export class MovieComponent implements OnInit {
     }
 
     this.movieService.rateMovie(newRating).subscribe((response) => {
-      if (
-        response &&
-        response.status &&
-        response.status === 200 &&
-        response.data
-      ) {
+      if (response?.status === 403) {
+        this.userService.deleteToken();
+        this.router.navigateByUrl('/login');
+        return;
+      }
+
+      if (response?.status === 200 && response.data) {
         this.userRating = response.data;
         this.postRateMovie(this.userRating);
 
@@ -189,12 +191,13 @@ export class MovieComponent implements OnInit {
     if (!isConfirmed) return;
 
     this.movieService.deleteMovie(movieId).subscribe((response) => {
-      if (
-        response &&
-        response.status &&
-        response.status === 200 &&
-        response.data
-      ) {
+      if (response?.status === 403) {
+        this.userService.deleteToken();
+        this.router.navigateByUrl('/login');
+        return;
+      }
+
+      if (response?.status === 200 && response.data) {
         this.router.navigateByUrl('/movies/my-movies');
         return;
       }

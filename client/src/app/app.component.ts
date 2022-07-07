@@ -12,7 +12,13 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.loadUser().subscribe((response) => {
-      if (response && response.status && response.status === 200) {
+      if (response?.status === 403) {
+        this.userService.deleteToken();
+        this.router.navigateByUrl('/login');
+        return;
+      }
+
+      if (response?.status === 200) {
         this.userService.loadedUser(response.data);
       }
     });
