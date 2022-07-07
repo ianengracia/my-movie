@@ -1,0 +1,34 @@
+<div class="hero mb-5">
+  <swiper
+    [slidesPerView]="1"
+    [loop]="true"
+    [pagination]="{
+      clickable: true
+    }"
+    [autoplay]="{
+      delay: 3000,
+      disableOnInteraction: false
+    }"
+    class="mySwiper"
+  >
+    <ng-template swiperSlide *ngFor="let movie of featuredMovies">
+      <div class="slide">
+        <img [src]="movie.image" alt="1" />
+        <div class="details">
+          <h2 class="details-title">{{ movie.title }}</h2>
+          <p>
+            <span class="has-text-weight-bold">
+              <fa-icon [icon]="faStarIcon" class="has-text-warning"></fa-icon>
+              {{ movie.rating }}
+            </span>
+            <span class="mx-5">{{ movie.runtime }} mins</span>
+            <span>{{ movie.genre }}</span>
+          </p>
+          <article class="details-summary has-text-grey-lighter">
+            {{ movie.summary }}
+          </article>
+        </div>
+      </div>
+    </ng-template>
+  </swiper>
+</div>

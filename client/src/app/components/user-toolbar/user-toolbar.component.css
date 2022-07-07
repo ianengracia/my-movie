@@ -1,0 +1,12 @@
+.navbar-item img {
+  max-height: unset;
+}
+
+.link:hover,
+.link:focus,
+.link.is-active {
+  background-color: transparent;
+  color: #fff;
+
+  border-bottom: 2px solid #fff;
+}

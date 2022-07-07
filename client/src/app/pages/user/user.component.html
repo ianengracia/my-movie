@@ -1,0 +1,6 @@
+<div class="user-container box is-transparent">
+  <h3 *ngIf="hasRoute('/signup')" class="form-title">Sign Up</h3>
+  <h3 *ngIf="hasRoute('/login')" class="form-title">Login</h3>
+
+  <router-outlet></router-outlet>
+</div>

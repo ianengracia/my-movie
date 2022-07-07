@@ -1,0 +1,21 @@
+<div class="navbar-menu">
+  <a
+    routerLink="/movies/my-movies"
+    class="navbar-item link has-text-light"
+    routerLinkActive="is-active"
+  >
+    My Movies
+  </a>
+  <div class="navbar-item">
+    <figure class="image is-32x32 mx-3">
+      <img
+        class="is-rounded is-32x32"
+        src="{{ user.avatar }}"
+        title="{{ user.name }}"
+      />
+    </figure>
+    <button class="button is-danger is-small ml-3" (click)="onClick()">
+      Logout
+    </button>
+  </div>
+</div>

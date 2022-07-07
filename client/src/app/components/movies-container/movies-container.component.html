@@ -1,0 +1,26 @@
+<div
+  class="is-flex is-align-items-center is-justify-content-space-between mb-4"
+>
+  <h2 class="has-text-grey-light is-size-4 container-title">
+    <span> {{ title }}</span>
+    <span *ngIf="searchFor" class="badge has-background-info">
+      {{ searchFor }}
+    </span>
+  </h2>
+  <a class="button is-small is-link" *ngIf="canAddNew" routerLink="../new">
+    New Movie
+  </a>
+</div>
+
+<div *ngIf="!isEmpty" class="movies-container">
+  <app-movies-tile
+    *ngFor="let movie of movies"
+    [movie]="movie"
+    class="movie"
+    (click)="onClick(movie)"
+  ></app-movies-tile>
+</div>
+
+<span *ngIf="isLoading" class="loading has-text-grey-light"> Loading... </span>
+
+<app-no-result *ngIf="isEmpty && !isLoading"></app-no-result>

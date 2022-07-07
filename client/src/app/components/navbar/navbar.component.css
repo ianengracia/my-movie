@@ -1,0 +1,27 @@
+.navbar {
+  background-color: transparent !important;
+}
+
+.navbar-item img {
+  max-height: unset !important;
+}
+
+.search {
+  width: 30%;
+  position: relative;
+}
+
+.input {
+  border-radius: 1rem;
+  padding-right: 1.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  right: 1.5rem;
+}
+
+.search button {
+  position: absolute;
+  opacity: 0;
+}

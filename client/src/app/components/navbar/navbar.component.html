@@ -1,0 +1,28 @@
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/">
+      <img src="./assets/images/logo.jpg" width="150" height="65" />
+    </a>
+  </div>
+
+  <form class="navbar-item search" (ngSubmit)="onSearchSubmit()">
+    <input
+      class="input is-small"
+      type="text"
+      name="searchFor"
+      placeholder="Enter movie title..."
+      [(ngModel)]="searchFor"
+    />
+
+    <fa-icon
+      [icon]="faSearchIcon"
+      class="search-icon has-text-grey-light"
+    ></fa-icon>
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="navbar-end">
+    <app-user-buttons *ngIf="!isUserLoggedIn"></app-user-buttons>
+    <app-user-toolbar *ngIf="isUserLoggedIn" [user]="user"></app-user-toolbar>
+  </div>
+</nav>

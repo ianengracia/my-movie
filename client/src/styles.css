@@ -1,0 +1,10 @@
+@import "~bulma/css/bulma.min.css";
+@import "~swiper/swiper-bundle.min.css";
+
+body,
+html {
+  height: 100%;
+  background-color: #020916;
+
+  overflow-y: auto;
+}

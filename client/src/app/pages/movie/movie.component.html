@@ -1,0 +1,134 @@
+<app-no-result
+  *ngIf="isNotFound && !isLoading"
+  [message]="'Movie not found.'"
+></app-no-result>
+
+<div *ngIf="movie" class="container">
+  <section class="top">
+    <div class="top-left">
+      <figure class="poster">
+        <img src="{{ movie.poster }}" alt="{{ movie.title }}" />
+      </figure>
+      <button class="button is-primary top-btn">Watch Now</button>
+      <a
+        *ngIf="isUserUploaded"
+        class="button is-warning top-btn"
+        routerLink="/movies/update"
+        [queryParams]="{ id: movie.id }"
+      >
+        Update Movie
+      </a>
+      <button
+        *ngIf="isUserUploaded"
+        class="button is-danger top-btn"
+        (click)="onClickDelete()"
+      >
+        Delete Movie
+      </button>
+    </div>
+
+    <div class="top-details has-text-grey-lighter">
+      <h2 class="is-size-3 has-text-weight-bold">
+        {{ movie.title }}
+      </h2>
+
+      <h3 class="is-size-5 has-text-weight-bold mt-5">
+        {{ movie.releaseDate | date: "yyyy" }}, {{ movie.country }}
+      </h3>
+      <h3 class="is-size-5 has-text-weight-bold">
+        {{ movie.genre.split(",").join(", ") }}
+      </h3>
+
+      <h4 class="mt-4 has-text-grey-light">
+        <em>Runtime: {{ movie.runtime }} mins</em>
+      </h4>
+      <h4 class="has-text-grey-light">
+        {{ movie.production }}
+      </h4>
+
+      <h4 class="mt-4">
+        Users rated this movie {{ movie.overallRating }}
+        <fa-icon [icon]="faStarSolidIcon" class="has-text-warning"></fa-icon>
+      </h4>
+
+      <div *ngIf="isUserLoggedIn" class="ratings">
+        <fa-icon
+          *ngFor="let r of showRating"
+          [icon]="r.icon"
+          [class]="r.className + ' rating-icon'"
+          [title]="r.id + 1 + ' star'"
+          (click)="onClickRating(r.id + 1)"
+        ></fa-icon>
+      </div>
+
+      <h4 *ngIf="!isUserLoggedIn" class="is-size-7 has-text-grey mt-5">
+        <em>Login to rate this movie.</em>
+      </h4>
+    </div>
+  </section>
+  <section class="preview">
+    <figure class="preview-image">
+      <img src="./assets/images/preview-1.jpg" alt="Preview 1" />
+    </figure>
+    <figure class="preview-image">
+      <img src="./assets/images/preview-2.jpg" alt="Preview 2" />
+    </figure>
+    <figure class="preview-image">
+      <img src="./assets/images/preview-3.jpg" alt="Preview 3" />
+    </figure>
+  </section>
+  <section class="bottom has-text-grey-lighter">
+    <div class="bottom-left">
+      <h3 class="is-size-5 has-text-weight-bold mt-5">Plot Summary</h3>
+      <article class="summary">
+        {{ movie.summary }}
+      </article>
+
+      <h4 class="mt-5 has-text-grey-light">
+        <em>
+          Uploaded By:
+          <span class="has-text-weight-bold"> {{ movie.user.name }} </span>
+        </em>
+      </h4>
+      <h4 class="has-text-grey-light">
+        <em> {{ movie.timestamp | date: "MMMM d, yyyy 'at' hh:mm a" }} </em>
+      </h4>
+    </div>
+    <div class="bottom-right">
+      <h3 class="is-size-5 has-text-weight-bold mt-5">Directors</h3>
+      <ul class="mb-5">
+        <li
+          *ngFor="let director of movie.director.split(',')"
+          class="list-item"
+        >
+          <figure class="image is-32x32">
+            <img
+              src="https://xsgames.co/randomusers/avatar.php?g=pixel"
+              alt="{{ director.trim() }}"
+              class="is-rounded"
+            />
+          </figure>
+
+          <span> {{ director.trim() }}</span>
+        </li>
+      </ul>
+
+      <h3 class="is-size-5 has-text-weight-bold mt-5">Lead Cast</h3>
+      <ul class="mb-5">
+        <li *ngFor="let cast of movie.cast.split(',')" class="list-item">
+          <figure class="image is-32x32">
+            <img
+              src="https://xsgames.co/randomusers/avatar.php?g=pixel"
+              alt="{{ cast.trim() }}"
+              class="is-rounded"
+            />
+          </figure>
+
+          <span> {{ cast.trim() }}</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<span *ngIf="isLoading" class="loading has-text-grey-light"> Loading... </span>

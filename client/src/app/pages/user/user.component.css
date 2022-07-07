@@ -1,0 +1,17 @@
+.user-container {
+  max-width: 28rem;
+  margin: auto;
+  margin-top: 5rem;
+  padding: 1rem 2rem 1.5rem;
+}
+
+.form-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 1rem;
+}

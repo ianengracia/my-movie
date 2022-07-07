@@ -1,0 +1,27 @@
+<div class="box movie-box">
+  <figure class="poster" title="{{ movie.title }}">
+    <img src="{{ movie.poster }}" alt="{{ movie.title }}" />
+  </figure>
+
+  <div class="info has-text-grey">
+    <h6 class="info-title">{{ movie.title }}</h6>
+    <p class="info-texts">
+      <span class="info-text">
+        {{ movie.releaseDate | date: "yyyy" }}
+
+        <fa-icon
+          [icon]="faDotIcon"
+          [ngStyle]="{ 'font-size': '.25rem' }"
+          class="mx-1"
+        ></fa-icon>
+
+        {{ movie.runtime }} mins
+      </span>
+
+      <span class="rating">
+        <fa-icon [icon]="faStarIcon" class="has-text-warning"></fa-icon>
+        {{ movie.overallRating }}
+      </span>
+    </p>
+  </div>
+</div>

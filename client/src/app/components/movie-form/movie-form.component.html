@@ -1,0 +1,226 @@
+<form (ngSubmit)="onSubmit()" class="form-container box">
+  <div class="top">
+    <div class="top-left">
+      <div class="field">
+        <figure class="poster box">
+          <img *ngIf="poster" src="{{ poster }}" alt="Poster" />
+
+          <label class="placeholder" for="postInputField">
+            <fa-icon
+              [icon]="faUploadIcon"
+              class="placeholder-icon"
+              *ngIf="!poster"
+            ></fa-icon>
+          </label>
+          <input
+            type="file"
+            id="postInputField"
+            accept="image/png, image/gif, image/jpeg"
+            class="hidden"
+            (change)="onPosterImageChange($event)"
+          />
+        </figure>
+        <p class="has-text-danger-dark is-size-7" *ngIf="errors.poster">
+          Please upload poster.
+        </p>
+      </div>
+
+      <div class="genres">
+        <div *ngFor="let g of genres" class="field">
+          <label class="checkbox">
+            <input
+              type="checkbox"
+              [value]="g"
+              (change)="onSelectGenre($event)"
+              [checked]="isGenreSelected(g)"
+            />
+            {{ g }}
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <input
+            class="input is-small"
+            type="hidden"
+            name="genre"
+            [(ngModel)]="genre"
+          />
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.genre"
+          >
+            Please select atleast (1) genre.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="top-right">
+      <div class="field">
+        <label class="label">Title</label>
+        <div class="control">
+          <input
+            class="input is-small"
+            type="text"
+            name="title"
+            placeholder="Enter title"
+            [(ngModel)]="title"
+          />
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.title"
+          >
+            Please enter title.
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Release Date</label>
+        <div class="control">
+          <input
+            class="input is-small"
+            type="date"
+            name="releaseDate"
+            placeholder="Enter release date"
+            [(ngModel)]="releaseDate"
+          />
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.releaseDate"
+          >
+            Please enter release date.
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Runtime</label>
+        <div class="control">
+          <input
+            class="input is-small"
+            type="number"
+            name="runtime"
+            placeholder="Enter runtime (mins)"
+            [(ngModel)]="runtime"
+            min="1"
+          />
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.runtime"
+          >
+            Please enter runtime.
+          </p>
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.runtimeFormat"
+          >
+            Please enter a number.
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Country</label>
+        <div class="control">
+          <div class="select is-small is-fullwidth">
+            <select name="country" [(ngModel)]="country">
+              <option value="">Select country</option>
+              <option *ngFor="let c of countries" [value]="c">
+                {{ c }}
+              </option>
+            </select>
+          </div>
+
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.country"
+          >
+            Please select country.
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Director</label>
+        <div class="control">
+          <input
+            class="input is-small"
+            type="text"
+            name="director"
+            placeholder="e.g. John Smith, Jane Doe"
+            [(ngModel)]="director"
+          />
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.director"
+          >
+            Please enter director(s).
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Lead Cast</label>
+        <div class="control">
+          <input
+            class="input is-small"
+            type="text"
+            name="cast"
+            placeholder="e.g. John Smith, Jane Doe"
+            [(ngModel)]="cast"
+          />
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.cast"
+          >
+            Please enter cast(s).
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Production</label>
+        <div class="control">
+          <input
+            class="input is-small"
+            type="text"
+            name="production"
+            placeholder="e.g. Movie Inc., Film Universe"
+            [(ngModel)]="production"
+          />
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.production"
+          >
+            Please enter production(s).
+          </p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Plot Summary</label>
+        <div class="control">
+          <textarea
+            class="textarea is-small"
+            placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime autem asperiores minus illum voluptatem, ipsa quaerat, odit exercitationem, accusamus sint perspiciatis atque necessitatibus amet!"
+            [(ngModel)]="summary"
+            name="summary"
+          ></textarea>
+
+          <p
+            class="has-text-right has-text-danger-dark is-size-7"
+            *ngIf="errors.summary"
+          >
+            Please enter plot summary.
+          </p>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <button class="button is-primary is-small">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>

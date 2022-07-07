@@ -1,0 +1,72 @@
+.container-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.movies-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+  margin: 1rem -0.5rem;
+}
+
+.movie {
+  width: 12.5%;
+  padding: 0 0.5rem;
+  margin-bottom: 2.5rem;
+
+  cursor: pointer;
+}
+
+/* show 6 tile */
+@media screen and (max-width: 1439px) {
+  .movie {
+    width: 16.6666666667%;
+  }
+}
+
+/* show 4 tile */
+@media screen and (max-width: 768px) {
+  .movie {
+    width: 25%;
+  }
+}
+
+/* show 3 tile */
+@media screen and (max-width: 576px) {
+  .movie {
+    width: 33.333333334%;
+  }
+}
+
+/* show 3 tile */
+@media screen and (max-width: 480px) {
+  .movie {
+    width: 50%;
+  }
+}
+
+.badge {
+  font-size: 12px;
+
+  border-radius: 2px;
+
+  padding: 0.25rem 0.5rem;
+  margin: 0 0.5rem;
+}
+
+.loading {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 10rem 0;
+}
